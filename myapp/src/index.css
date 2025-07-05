@@ -1,1 +1,58 @@
 @import "tailwindcss";
+
+
+body {
+    font-family: 'Work Sans';
+}
+
+
+@theme {
+    --color-dark: #121212;
+    --color-gray-medium: #757575;
+    --color-gray-light: #AFAFAF;
+    --color-gray-xlight: #EEEEEE;
+    --color-gray-darker: #545454;
+    --color-blue-accent: #1A8CFF;
+    --color-green-dark: #4B6A4F;
+    --color-gray-bg: #F6F6F6;
+    --color-purple-muted: #655C80;
+    --color-gold-dark: #85640B;
+    --color-gold: #C29210;
+    --color-gray-border: #E2E2E2;
+    --color-green-bg: #E8F0E9;
+    --color-purple-bg: #EAE3FC;
+    --color-yellow-bg: #FFF3D6;
+    --color-navy-dark: #04071E;
+    --color-green-deep: #0A6E3D;
+    --color-green-olive: #3E5741;
+    --color-purple-deep: #463E59;
+    --color-blue-gray: #475569;
+    --color-gray-steel: #505450;
+    --color-green-muted: #618666;
+    --color-gray-muted: #666C66;
+    --color-brown-muted: #695149;
+    --color-green-soft: #6C8B70;
+    --color-green-light: #83A588;
+    --color-brown-light: #8C6C62;
+    --color-gray-pale: #A3ACA3;
+    --color-red-accent: #C22219;
+    --color-gray-silver: #CBCBCB;
+    --color-green-pale: #D2E0D4;
+    --color-green-mint: #D3F2E3;
+    --color-purple-light: #DCCFFC;
+    --color-blue-light: #E2E8F0;
+    --color-red-bright: #EF4D44;
+    --color-gray-ultra-light: #F8FAFC;
+    --color-orange-accent: #FA6736;
+    --color-orange-light: #FAC2AF;
+    --color-pink-bg: #FFE1DE;
+    --color-peach-bg: #FFE9E0;
+}
+
+
+@font-face {
+    font-family: 'Work Sans';
+    src: url('/public/fonts/WorkSans-VariableFont_wght.ttf');
+
+
+}
