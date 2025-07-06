@@ -52,7 +52,5 @@ body {
 
 @font-face {
     font-family: 'Work Sans';
-    src: url('/public/fonts/WorkSans-VariableFont_wght.ttf');
-
-
+    src: url('/fonts/WorkSans-VariableFont_wght.ttf');
 }
