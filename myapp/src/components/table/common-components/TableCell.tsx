@@ -2,7 +2,9 @@ import React from 'react'
 
 const TableCell = () => {
   return (
-    <div>TableCell</div>
+    <div>
+      TableCell
+    </div>
   )
 }
 

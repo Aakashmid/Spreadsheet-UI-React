@@ -9,13 +9,13 @@ const Table = () => {
         getCoreRowModel: getCoreRowModel()
     });
     return (
-        <div className="table-container w-screen min-h-screen ">
-            <table className=" border border-gray-xlight border-collapse bg-white">
+        <div className="table-container w-screen overflow-auto h-[calc(100vh-6.75rem)]">
+            <table className=" border border-gray-xlight border-collapse bg-white w-full  ">
                 <thead>
                     {table.getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id} className="text-base font-medium bg-gray-xlight">
+                        <tr key={headerGroup.id} className="">
                             {headerGroup.headers.map((header) => (
-                                <th key={header.id} colSpan={header.colSpan} className="truncate border border-gray-xlight px-4 py-2">
+                                <th key={header.id} colSpan={header.colSpan} className="border border-gray-bg">
                                     {header.isPlaceholder
                                         ? null
                                         : flexRender(
@@ -31,14 +31,28 @@ const Table = () => {
                     {table.getRowModel().rows.map((row) => (
                         <tr
                             key={row.id}
-                            className="text-base even:bg-gray-ultra-light hover:bg-gray-ultra-light transition-colors"
+                            className=""
                         >
                             {row.getVisibleCells().map((cell) => (
                                 <td
                                     key={cell.id}
-                                    className="border border-gray-xlight px-4 py-1 truncate"
+                                    className="border border-gray-bg px-4 py-1 truncate"
                                 >
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+
+                    {/* showing empty rows  */}
+                    {Array.from({ length: Math.max(0, 20 ) }).map((_, idx) => (
+                        <tr key={`empty-row-${idx}`} className="bg-white">
+                            {table.getAllLeafColumns().map((column, colIdx) => (
+                                <td
+                                    key={column.id}
+                                    className="border border-gray-xlight px-4 py-1 truncate"
+                                >
+                                    {colIdx === 0 ? table.getRowModel().rows.length + idx + 1 : ''}
                                 </td>
                             ))}
                         </tr>

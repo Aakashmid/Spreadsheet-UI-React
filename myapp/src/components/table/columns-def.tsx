@@ -1,4 +1,9 @@
 import { createColumnHelper } from "@tanstack/react-table"
+import { TableTitleCell } from "./common-components/TableHeaders"
+import { FaBriefcase, FaGlobe } from "react-icons/fa"
+import { IoCalendar, IoChevronDownCircleSharp } from "react-icons/io5"
+import { BsPersonFill } from "react-icons/bs"
+import { HiHashtag } from "react-icons/hi2"
 
 export type SheetDataType = {
     jobRequest: string,  // Overview group
@@ -80,7 +85,7 @@ const columnHelper = createColumnHelper<SheetDataType>()
 export const columns = [
     columnHelper.display({
         id: 'rowNumber',
-        header: () => '#',
+        header: () => <TableTitleCell Icon={HiHashtag}/>,
         cell: info => info.row.index + 1,
     }),
 
@@ -89,23 +94,27 @@ export const columns = [
         footer: props => props.column.id,
         columns: [
             columnHelper.accessor('jobRequest', {
-                // cell: info => info.getValue(),
+                header: () => <TableTitleCell isDropDown={true} Icon={FaBriefcase} title="Job Request" />,
                 cell: info => <div className="overflow-hidden">{info.getValue()}</div>,
                 footer: props => props.column.id,
             }),
             columnHelper.accessor('submitted', {
+                header: () => <TableTitleCell isDropDown={true} Icon={IoCalendar} title="Submitted" />,
                 cell: info => <span className="">{info.getValue().toLocaleDateString()}</span>,
                 footer: props => props.column.id,
             }),
-            columnHelper.accessor('submitter', {
+            columnHelper.accessor('status', {
+                header: () => <TableTitleCell isDropDown={true} Icon={IoChevronDownCircleSharp} title="Status" />,
                 cell: info => info.getValue(),
                 footer: props => props.column.id,
             }),
-            columnHelper.accessor('status', {
+            columnHelper.accessor('submitter', {
+                header: () => <TableTitleCell isDropDown={true} Icon={BsPersonFill} title="Submitter" />,
                 cell: info => info.getValue(),
                 footer: props => props.column.id,
             }),
             columnHelper.accessor('url', {
+                header: () => <TableTitleCell isDropDown={true} Icon={FaGlobe} title="Url" />,
                 cell: info => info.getValue(),
                 footer: props => props.column.id,
             }),
