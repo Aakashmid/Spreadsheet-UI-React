@@ -1,5 +1,6 @@
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
-import { columns, sheet_data } from './columns-def';
+import columns from './columns-def';
+import sheet_data from '../../data/sheetData';
 
 
 const Table = () => {
@@ -36,7 +37,7 @@ const Table = () => {
                             {row.getVisibleCells().map((cell) => (
                                 <td
                                     key={cell.id}
-                                    className="border border-gray-bg px-2 h-8  truncate"
+                                    className="border border-gray-bg  h-8  truncate"
                                 >
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </td>
@@ -50,7 +51,7 @@ const Table = () => {
                             {table.getAllLeafColumns().map((column, colIdx) => (
                                 <td
                                     key={column.id}
-                                    className="border border-gray-xlight px-2 h-8 truncate"
+                                    className="border border-gray-xlight  h-8 truncate"
                                 >
                                     {colIdx === 0 ? table.getRowModel().rows.length + idx + 1 : ''}
                                 </td>

@@ -7,124 +7,62 @@ import { HiHashtag } from "react-icons/hi2"
 import TableGroupCell from "./common-components/TableGroupCell"
 import TableHeaderCell2 from "./common-components/TableHeaderCell2"
 import TableHeaderLinkCell from "./common-components/TableHeaderLinkCell"
-
-export type SheetDataType = {
-    jobRequest: string,  // Overview group
-    submitted: Date,
-    submitter: string,
-    status: string,
-    url: string,
-    assigned: string,  // ABC group 
-    priority: string,  //  Answer a question - group for priority and due_date
-    due_date: Date,
-    est_value: number     // extract group
-}
-
-
-export const sheet_data: SheetDataType[] = [
-    {
-        jobRequest: 'Launch social media campaign for product XYZ',
-        submitted: new Date('2024-11-15'),
-        status: 'In-Progress',
-        submitter: 'Aisha Patel',
-        url: 'www.aishapatel.com',
-        assigned: 'Sophie Choudhury',
-        priority: 'Medium',
-        due_date: new Date('20-11-2024'),
-        est_value: 6200000
-    },
-    {
-        jobRequest: 'Update press kit for company redesign',
-        submitted: new Date('28-10-2024'),
-        status: 'Need to start',
-        submitter: 'Irfan Khan',
-        url: 'www.irfankhanportfolio.com',
-        assigned: 'Tejas Pandey',
-        priority: 'High',
-        due_date: new Date('30-10-2024'),
-        est_value: 3500000
-    },
-    {
-        jobRequest: 'Update press kit for company redesign',
-        submitted: new Date('28-10-2024'),
-        status: 'In-Progress',
-        submitter: 'Aisha Patel',
-        url: 'www.aishapatel.com',
-        assigned: 'Sophie Choudhury',
-        priority: 'Medium',
-        due_date: new Date('20-11-2024'),
-        est_value: 6200000
-    },
-    {
-        jobRequest: 'Update press kit for company redesign',
-        submitted: new Date('28-10-2024'),
-        status: 'In-Progress',
-        submitter: 'Aisha Patel',
-        url: 'www.aishapatel.com',
-        assigned: 'Sophie Choudhury',
-        priority: 'Medium',
-        due_date: new Date('20-11-2024'),
-        est_value: 6200000
-    },
-    {
-        jobRequest: 'Update press kit for company redesign',
-        submitted: new Date('28-10-2024'),
-        status: 'In-Progress',
-        submitter: 'Aisha Patel',
-        url: 'www.aishapatel.com',
-        assigned: 'Sophie Choudhury',
-        priority: 'Medium',
-        due_date: new Date('20-11-2024'),
-        est_value: 6200000
-    }
-]
-
-
+import type { SheetDataType } from "../../data/sheetData"
+import { BiPlus } from "react-icons/bi"
+import TableCell from "./common-components/TableCell"
+import type { StatusCell } from "./common-components/CellVariants"
 
 const columnHelper = createColumnHelper<SheetDataType>()
 
 
 
-export const columns = [
+
+
+const columns = [
     columnHelper.display({
         id: 'rowNumber',
         header: () => <TableHeaderCell Icon={HiHashtag} />,
-        cell: info => info.row.index + 1,
+             cell: info => info.row.index + 1,
     }),
 
     columnHelper.group({
         id: 'overview',
-        header: ()=> <TableHeaderLinkCell text={'Q3 Financial Overview'}/>,
+        header: () => <TableHeaderLinkCell text={'Q3 Financial Overview'} />,
         footer: props => props.column.id,
         columns: [
             columnHelper.accessor('jobRequest', {
                 header: () => <TableHeaderCell isDropDown={true} Icon={FaBriefcase} title="Job Request" />,
-                cell: info => <div className="overflow-hidden">{info.getValue()}</div>,
+
+                cell: info => <TableCell info={info}/>,
                 footer: props => props.column.id,
             }),
             columnHelper.accessor('submitted', {
                 header: () => <TableHeaderCell isDropDown={true} Icon={IoCalendar} title="Submitted" />,
-                cell: info => <span className="">{info.getValue().toLocaleDateString()}</span>,
+
+                cell: info => <TableCell info={info}/>,
                 footer: props => props.column.id,
             }),
             columnHelper.accessor('status', {
                 header: () => <TableHeaderCell isDropDown={true} Icon={IoChevronDownCircleSharp} title="Status" />,
-                cell: info => info.getValue(),
+
+            cell: info => <TableCell info={info}/>,
                 footer: props => props.column.id,
             }),
             columnHelper.accessor('submitter', {
                 header: () => <TableHeaderCell isDropDown={true} Icon={BsPersonFill} title="Submitter" />,
-                cell: info => info.getValue(),
-                footer: props => props.column.id,
-            }),
-            columnHelper.accessor('url', {
-                header: () => <TableHeaderCell isDropDown={true} Icon={FaGlobe} title="Url" />,
-                cell: info => info.getValue(),
+
+                cell: info => <TableCell info={info}/>,
                 footer: props => props.column.id,
             }),
         ],
     }),
 
+    columnHelper.accessor('url', {
+        header: () => <TableHeaderCell isDropDown={true} Icon={FaGlobe} title="Url" />,
+
+        cell: info => <TableCell info={info}/>,
+        footer: props => props.column.id,
+    }),
 
     columnHelper.group({
         id: 'ABC',
@@ -132,8 +70,8 @@ export const columns = [
         footer: props => props.column.id,
         columns: [
             columnHelper.accessor('assigned', {
-                header: ()=> <TableHeaderCell2 bgClass="bg-green-pale" textClass="text-gray-steel" text="Assigned"/>,
-                cell: info => info.getValue(),
+                header: () => <TableHeaderCell2 bgClass="bg-green-pale" textClass="text-gray-steel" text="Assigned" />,
+                cell: info => <TableCell info={info}/>,
                 footer: props => props.column.id,
             }),
         ],
@@ -144,13 +82,14 @@ export const columns = [
         footer: props => props.column.id,
         columns: [
             columnHelper.accessor('priority', {
-                header: ()=> <TableHeaderCell2 bgClass="bg-purple-light" textClass="text-purple-muted" text="Priority"/>,
-                cell: info => info.getValue(),
+                header: () => <TableHeaderCell2 bgClass="bg-purple-light" textClass="text-purple-muted" text="Priority" />,
+
+                cell: info => <TableCell info={info}/>,
                 footer: props => props.column.id,
             }),
             columnHelper.accessor('due_date', {
-                header: ()=> <TableHeaderCell2 bgClass="bg-purple-light" textClass="text-purple-muted" text="Due Date"/>,
-                cell: info => <span className="">{info.getValue().toLocaleDateString()}</span>,
+                header: () => <TableHeaderCell2 bgClass="bg-purple-light" textClass="text-purple-muted" text="Due Date" />,
+                cell: info => <TableCell info={info}/>,
                 footer: props => props.column.id,
             }),
         ],
@@ -161,10 +100,30 @@ export const columns = [
         footer: props => props.column.id,
         columns: [
             columnHelper.accessor('est_value', {
-                header: ()=> <TableHeaderCell2 bgClass="bg-orange-light" textClass="text-brown-muted" text="Est. Value"/>,
-                cell: info => info.getValue(),
+                header: () => <TableHeaderCell2 bgClass="bg-orange-light" textClass="text-brown-muted" text="Est. Value" />,
+
+                cell: info => <TableCell info={info}/>,
                 footer: props => props.column.id,
             }),
         ],
     }),
+    columnHelper.group({
+        id: 'add new column',
+        header: () => <div className="h-full flex justify-center items-center px-2 bg-gray-xlight ">
+            <button className="cursor-pointer"><BiPlus className="text-navy-dark h-5 w-5" /></button>
+        </div>,
+        columns: [
+
+            columnHelper.accessor('empty', {
+                id:'empty',
+                header: () => <div></div>,
+
+                cell: info => <TableCell info={info}/>,
+                footer: props => props.column.id,
+            }),
+        ]
+    })
 ]
+
+
+export default columns
