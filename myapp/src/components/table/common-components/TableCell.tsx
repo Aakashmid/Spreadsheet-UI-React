@@ -1,9 +1,16 @@
-import React from 'react'
+import type { SheetDataType } from '../columns-def';
+import type { CellContext } from '@tanstack/react-table';
 
-const TableCell = () => {
+type TableCellProps = {
+  info: CellContext<SheetDataType, any>;
+};
+
+
+const TableCell = ({info}:TableCellProps) => {
   return (
-    <div>
-      TableCell
+    <div className='h-full '>
+   {/* <input type="text" className="" /> */}
+   <p className="text-xs">{info.getValue()}</p>
     </div>
   )
 }

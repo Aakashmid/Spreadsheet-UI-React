@@ -15,7 +15,7 @@ const Table = () => {
                     {table.getHeaderGroups().map((headerGroup) => (
                         <tr key={headerGroup.id} className="">
                             {headerGroup.headers.map((header) => (
-                                <th key={header.id} colSpan={header.colSpan} className="border border-gray-bg">
+                                <th key={header.id} colSpan={header.colSpan} className="border border-gray-bg h-8">
                                     {header.isPlaceholder
                                         ? null
                                         : flexRender(
@@ -36,7 +36,7 @@ const Table = () => {
                             {row.getVisibleCells().map((cell) => (
                                 <td
                                     key={cell.id}
-                                    className="border border-gray-bg px-4 py-1 truncate"
+                                    className="border border-gray-bg px-2 h-8  truncate"
                                 >
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </td>
@@ -50,7 +50,7 @@ const Table = () => {
                             {table.getAllLeafColumns().map((column, colIdx) => (
                                 <td
                                     key={column.id}
-                                    className="border border-gray-xlight px-4 py-1 truncate"
+                                    className="border border-gray-xlight px-2 h-8 truncate"
                                 >
                                     {colIdx === 0 ? table.getRowModel().rows.length + idx + 1 : ''}
                                 </td>

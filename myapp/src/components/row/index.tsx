@@ -1,9 +1,9 @@
 import type { IconType } from "react-icons"
-import { FaLine, FaShareAltSquare, FaShareSquare } from "react-icons/fa"
-import { FaRegShareFromSquare, FaShareFromSquare } from "react-icons/fa6"
+
+import { FaRegShareFromSquare } from "react-icons/fa6"
 import { LiaAngleDoubleRightSolid } from "react-icons/lia"
 import { LuArrowDownToLine, LuArrowUpDown, LuArrowUpToLine } from "react-icons/lu"
-import { PiArrowsSplit, PiLineVertical } from "react-icons/pi"
+import {  PiLineVertical } from "react-icons/pi"
 import { RiFilter3Line } from "react-icons/ri"
 import { TbArrowAutofitHeight, TbArrowsSplit } from "react-icons/tb"
 import { VscEyeClosed } from "react-icons/vsc"
