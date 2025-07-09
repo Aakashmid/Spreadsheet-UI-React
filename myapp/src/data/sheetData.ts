@@ -15,7 +15,7 @@ export const sheet_data: SheetDataType[] = [
     {
         jobRequest: 'Launch social media campaign for product XYZ',
         submitted: new Date('2024-11-15'),
-        status: 'In-Progress',
+        status: 'In-Process',
         submitter: 'Aisha Patel',
         url: 'www.aishapatel.com',
         assigned: 'Sophie Choudhury',
@@ -37,7 +37,7 @@ export const sheet_data: SheetDataType[] = [
     {
         jobRequest: 'Update press kit for company redesign',
         submitted: new Date('2024-10-28'),
-        status: 'In-Progress',
+        status: 'Complete',
         submitter: 'Aisha Patel',
         url: 'www.aishapatel.com',
         assigned: 'Sophie Choudhury',
@@ -48,7 +48,7 @@ export const sheet_data: SheetDataType[] = [
     {
         jobRequest: 'Update press kit for company redesign',
         submitted: new Date('2024-10-28'),
-        status: 'In-Progress',
+        status: 'In-Process',
         submitter: 'Aisha Patel',
         url: 'www.aishapatel.com',
         assigned: 'Sophie Choudhury',
@@ -59,11 +59,11 @@ export const sheet_data: SheetDataType[] = [
     {
         jobRequest: 'Update press kit for company redesign',
         submitted: new Date('2024-10-28'),
-        status: 'In-Progress',
+        status: 'Blocked',
         submitter: 'Aisha Patel',
         url: 'www.aishapatel.com',
         assigned: 'Sophie Choudhury',
-        priority: 'Medium',
+        priority: 'Low',
         due_date: new Date('2024-11-20'),
         est_value: 6200000
     }

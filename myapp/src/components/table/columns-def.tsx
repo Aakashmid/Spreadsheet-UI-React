@@ -21,8 +21,8 @@ const columnHelper = createColumnHelper<SheetDataType>()
 const columns = [
     columnHelper.display({
         id: 'rowNumber',
-        header: () => <TableHeaderCell Icon={HiHashtag} />,
-             cell: info => info.row.index + 1,
+        header: () => <div className="h-full bg-gray-xlight flex justify-center items-center px-2"><HiHashtag className="h-4 w-4 text-gray-light" /></div>,
+        cell: info => <div className="w-full text-center px-2 text-sm text-gray-medium">{info.row.index + 1}</div>,
     }),
 
     columnHelper.group({
@@ -33,25 +33,25 @@ const columns = [
             columnHelper.accessor('jobRequest', {
                 header: () => <TableHeaderCell isDropDown={true} Icon={FaBriefcase} title="Job Request" />,
 
-                cell: info => <TableCell info={info}/>,
+                cell: info => <TableCell info={info} />,
                 footer: props => props.column.id,
             }),
             columnHelper.accessor('submitted', {
                 header: () => <TableHeaderCell isDropDown={true} Icon={IoCalendar} title="Submitted" />,
 
-                cell: info => <TableCell info={info}/>,
+                cell: info => <TableCell info={info} />,
                 footer: props => props.column.id,
             }),
             columnHelper.accessor('status', {
                 header: () => <TableHeaderCell isDropDown={true} Icon={IoChevronDownCircleSharp} title="Status" />,
 
-            cell: info => <TableCell info={info}/>,
+                cell: info => <TableCell info={info} />,
                 footer: props => props.column.id,
             }),
             columnHelper.accessor('submitter', {
                 header: () => <TableHeaderCell isDropDown={true} Icon={BsPersonFill} title="Submitter" />,
 
-                cell: info => <TableCell info={info}/>,
+                cell: info => <TableCell info={info} />,
                 footer: props => props.column.id,
             }),
         ],
@@ -60,7 +60,7 @@ const columns = [
     columnHelper.accessor('url', {
         header: () => <TableHeaderCell isDropDown={true} Icon={FaGlobe} title="Url" />,
 
-        cell: info => <TableCell info={info}/>,
+        cell: info => <TableCell info={info} />,
         footer: props => props.column.id,
     }),
 
@@ -71,7 +71,7 @@ const columns = [
         columns: [
             columnHelper.accessor('assigned', {
                 header: () => <TableHeaderCell2 bgClass="bg-green-pale" textClass="text-gray-steel" text="Assigned" />,
-                cell: info => <TableCell info={info}/>,
+                cell: info => <TableCell info={info} />,
                 footer: props => props.column.id,
             }),
         ],
@@ -84,12 +84,12 @@ const columns = [
             columnHelper.accessor('priority', {
                 header: () => <TableHeaderCell2 bgClass="bg-purple-light" textClass="text-purple-muted" text="Priority" />,
 
-                cell: info => <TableCell info={info}/>,
+                cell: info => <TableCell info={info} />,
                 footer: props => props.column.id,
             }),
             columnHelper.accessor('due_date', {
                 header: () => <TableHeaderCell2 bgClass="bg-purple-light" textClass="text-purple-muted" text="Due Date" />,
-                cell: info => <TableCell info={info}/>,
+                cell: info => <TableCell info={info} />,
                 footer: props => props.column.id,
             }),
         ],
@@ -102,7 +102,7 @@ const columns = [
             columnHelper.accessor('est_value', {
                 header: () => <TableHeaderCell2 bgClass="bg-orange-light" textClass="text-brown-muted" text="Est. Value" />,
 
-                cell: info => <TableCell info={info}/>,
+                cell: info => <TableCell info={info} />,
                 footer: props => props.column.id,
             }),
         ],
@@ -115,10 +115,10 @@ const columns = [
         columns: [
 
             columnHelper.accessor('empty', {
-                id:'empty',
+                id: 'empty',
                 header: () => <div></div>,
 
-                cell: info => <TableCell info={info}/>,
+                cell: info => <TableCell info={info} />,
                 footer: props => props.column.id,
             }),
         ]

@@ -20,13 +20,13 @@ const Topbar = () => {
                 </button>
 
                 <div className="flex items-center gap-4">{path.map((name: string, index: number) => (
-                    index === path.length - 1 ? <span className="font-medium" key={index}>{name}</span> :
-                        <span key={index} className="text-gray-light flex items-center gap-2">{name} <LiaAngleRightSolid /></span>
+                    index === path.length - 1 ? <span className="font-medium text-sm" key={index}>{name}</span> :
+                        <span key={index} className="text-gray-light text-sm flex items-center gap-2">{name} <LiaAngleRightSolid /></span>
 
                 ))}
                 </div>
-                <button className="">
-                    <BsThreeDots className="w-5 h-auto text-gray-light" />
+                <button className="p-1">
+                    <BsThreeDots className="w-5 h-5 text-gray-light" />
                 </button>
 
             </div>

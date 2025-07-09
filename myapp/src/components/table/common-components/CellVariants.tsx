@@ -1,5 +1,5 @@
 import { FaIndianRupeeSign, FaRupeeSign } from "react-icons/fa6";
-import TableCell from "./TableCell"
+
 
 
 
@@ -20,19 +20,16 @@ const UrlCell = ({ value }: { value: string }) => (
 
 // status cell ------------------------------------------
 const statusStyles: Record<string, string> = {
-  "In-Progress": "bg-blue-100 text-blue-700",
-  "Completed": "bg-green-100 text-green-700",
-  "Need to start": "bg-yellow-100 text-yellow-700",
-  "Blocked": "bg-red-100 text-red-700",
+  "In-Process": "bg-yellow-bg text-yellow-700",
+  "Complete": "bg-green-mint text-green-800",
+  "Need to start": "text-blue-gray bg-gray-200",
+  "Blocked": "text-red-accent bg-red-100",
 };
 
 const StatusCell = ({ value }: { value: string }) => {
   const style = statusStyles[value] || "bg-gray-100 text-gray-700";
   return (
-    <div className={`px-2 py-1 rounded text-xs font-medium ${style}`}>
-        <span className="">
-            
-        </span>
+    <div className={` px-2 py-1 rounded-2xl text-xs font-medium  ${style}   w-fit mx-auto`}>
       {value}
     </div>
   );
@@ -57,27 +54,27 @@ const DateCell = ({ value }: { value: Date }) => (
 
 // priority cell  ----------------------------------------------------
 const priorityColors: Record<string, string> = {
-  High: "text-red-600",
+  High: "text-red-500",
   Medium: "text-yellow-600",
-  Low: "text-green-600",
+  Low: "text-blue-accent",
 };
 
 const PriorityCell = ({ value }: { value: string }) => (
-  <div className={`font-semibold flex justify-center ${priorityColors[value] || "text-gray-700"}`}>
+  <span className={`font-semibold w-fit mx-auto  ${priorityColors[value] || "text-gray-700"}`}>
     {value}
-  </div>
+  </span>
 );
 
 
 
 // currency cell  ------------------------------------------------------
 const CurrencyCell = ({ value }: { value: number }) => (
-  <div className="flex items-center justify-end gap-1">
+  <div className="flex items-center justify-end gap-2">
     {value?.toLocaleString("en-IN")}
-    <FaIndianRupeeSign className="inline-block text-gray-600 h-3 w-3" />
+    <FaIndianRupeeSign className="inline-block text-gray-light h-3 w-2" />
   </div>
 );
 
 
 
-export {StatusCell,PriorityCell , UrlCell , CurrencyCell , DateCell }
+export { StatusCell, PriorityCell, UrlCell, CurrencyCell, DateCell }

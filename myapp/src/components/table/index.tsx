@@ -46,14 +46,17 @@ const Table = () => {
                     ))}
 
                     {/* showing empty rows  */}
-                    {Array.from({ length: Math.max(0, 20 ) }).map((_, idx) => (
+                    {Array.from({ length: Math.max(0, 20) }).map((_, idx) => (
                         <tr key={`empty-row-${idx}`} className="bg-white">
                             {table.getAllLeafColumns().map((column, colIdx) => (
                                 <td
                                     key={column.id}
                                     className="border border-gray-xlight  h-8 truncate"
                                 >
-                                    {colIdx === 0 ? table.getRowModel().rows.length + idx + 1 : ''}
+
+
+                                    {colIdx === 0 ? <div className="w-full text-center px-2 text-sm text-gray-medium">{table.getRowModel().rows.length + idx + 1}</div>
+                                        : ''}
                                 </td>
                             ))}
                         </tr>

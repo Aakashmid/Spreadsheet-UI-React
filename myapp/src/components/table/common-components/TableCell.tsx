@@ -18,31 +18,37 @@ const TableCell: React.FC<TableCellProps> = ({ info }) => {
     // TODO: Save value to your data source
   };
 
-  if (editing) {
-    return (
-      <input
-        type="text"
-        value={value ?? ""}
-        onChange={e => setValue(e.target.value)}
-        onBlur={handleSave}
-        autoFocus
-        className="w-full"
-      />
-    );
-  }
+
+
+
+
 
   // Display mode: choose component by columnId
   return (
-    <div  className="h-full px-2 flex items-center text-xs">
-      {columnId === "url" && <UrlCell  value={value} />}
-      {columnId === "status" && <StatusCell  value={value} />}
-      {columnId === "priority" && <PriorityCell  value={value} />}
-      {(columnId === "due_date" || columnId === "submitted") && <DateCell  value={value} />}
-      {columnId === "est_value" && <CurrencyCell  value={value} />}
-      {!["url", "status", "priority", "due_date", "submitted", "est_value"].includes(columnId) && (
-        <p className="">{value}</p>
-      )}
-    </div>)
+    <div onClick={() => setEditing(true)} className={`h-full px-2 flex items-center text-xs ${editing && 'border border-green-soft'} `}  >
+      {editing ? <input
+        type="text"
+        value={value ?? ""}
+        onChange={e => setValue(e.target.value)}
+        // onKeyDown={ha}
+        onBlur={handleSave}
+        autoFocus
+        className="w-full  outline-none "
+      />
+        :
+        <>
+          {columnId === "url" && <UrlCell value={value} />}
+          {columnId === "status" && <StatusCell value={value} />}
+          {columnId === "priority" && <PriorityCell value={value} />}
+          {(columnId === "due_date" || columnId === "submitted") && <DateCell value={value} />}
+          {columnId === "est_value" && <CurrencyCell value={value} />}
+          {!["url", "status", "priority", "due_date", "submitted", "est_value"].includes(columnId) && (
+            <p className="text-left">{value}</p>
+          )}
+        </>}
+
+    </div>
+  )
 };
 
 export default TableCell;
