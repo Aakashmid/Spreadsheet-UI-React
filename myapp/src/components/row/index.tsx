@@ -82,7 +82,7 @@ const Row = () => {
 
 
     return (
-        <div className="row-wrapper ">
+        <div className="row-wrapper bg-white">
             <div className="row-content px-2 py-1.5 flex items-center">
                 <div className="toolbar flex items-center gap-1 p-2 text-dark">
                     <p className="text-sm`">Tool bar</p>

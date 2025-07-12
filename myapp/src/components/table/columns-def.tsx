@@ -23,6 +23,7 @@ const columns = [
         id: 'rowNumber',
         header: () => <div className="h-full bg-gray-xlight flex justify-center items-center px-2"><HiHashtag className="h-4 w-4 text-gray-light" /></div>,
         cell: info => <div className="w-full text-center px-2 text-sm text-gray-medium">{info.row.index + 1}</div>,
+        size:32
     }),
 
     columnHelper.group({

@@ -25,7 +25,7 @@ const TableCell: React.FC<TableCellProps> = ({ info }) => {
 
   // Display mode: choose component by columnId
   return (
-    <div onClick={() => setEditing(true)} className={`h-full px-2 flex items-center text-xs ${editing && 'border border-green-soft'} `}  >
+    <div onClick={() => setEditing(true)} className={`h-full px-2 flex items-center text-xs w-full ${editing && 'border border-green-soft'} `}  >
       {editing ? <input
         type="text"
         value={value ?? ""}

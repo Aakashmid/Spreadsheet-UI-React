@@ -7,7 +7,7 @@ import { FaIndianRupeeSign, FaRupeeSign } from "react-icons/fa6";
 // url cell --------------------------------
 const UrlCell = ({ value }: { value: string }) => (
   <a
-    href={value}
+    href={value.startsWith('http://') || value.startsWith('https://') ? value : `http://${value}`}
     target="_blank"
     rel="noopener noreferrer"
     className="underline text-black block max-w-[180px] truncate"

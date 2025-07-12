@@ -8,12 +8,11 @@ import Topbar from "./components/topbar"
 function App() {
   return (
     <>
-
       <Topbar />
       <div className="spreadsheet-wrapper w-full relative">
         <Row />
         <Table />
-        <div className="absolute z-10 bottom-0p ">
+        <div className="fixed z-10 bottom-0 ">
           <TitleRow/>
         </div>
       </div>
