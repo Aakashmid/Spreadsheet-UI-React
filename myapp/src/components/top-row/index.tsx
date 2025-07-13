@@ -91,7 +91,7 @@ const Row = () => {
                 <PiLineVertical className="h-6 w-auto px-2 text-gray-border" />
                 <div className="table-control-block flex items-center grow gap-1">
                     {control_block_buttons.map((btn: ButtonProps, index: number) =>
-                        <button className="flex items-center p-2 gap-2 text-dark cursor-pointer " key={index}>
+                        <button onClick={btn.handleClick} className="flex items-center p-2 gap-2 text-dark cursor-pointer " key={index}>
                             <btn.icon className="h-5 w-5 " />
                             <span className=" text-sm">
                                 {btn.text}
@@ -101,7 +101,7 @@ const Row = () => {
                 </div>
                 <div className="actions-right flex items-center gap-2 ">
                     {right_action_buttons.map((btn: ButtonProps, index: number) => (
-                        <button className="flex items-center p-2 pr-3 gap-2 border border-gray-xlight rounded-lg cursor-pointer hover:bg-gray-100 transition-colors text-gray-darker " key={index}>
+                        <button onClick={btn.handleClick} className="flex items-center p-2 pr-3 gap-2 border border-gray-xlight rounded-lg cursor-pointer hover:bg-gray-100 transition-colors text-gray-darker " key={index}>
                             <btn.icon className="h-5 w-5 " />
                             <span className=" text-sm">
                                 {btn.text}
@@ -109,7 +109,8 @@ const Row = () => {
                         </button>
                     ))}
 
-                    <button className="flex items-center py-2 px-6 gap-2  bg-green-dark rounded-lg text-white cursor-pointer">
+                    <button onClick={()=>console.log('new action clicked')
+                    } className="flex items-center py-2 px-6 gap-2  bg-green-dark hover:bg-green-olive rounded-lg text-white cursor-pointer transition-colors">
                         <TbArrowsSplit className="rotate-90 h-5 w-5" />
                         <span className="text-sm font-medium">New Actions</span>
                     </button>

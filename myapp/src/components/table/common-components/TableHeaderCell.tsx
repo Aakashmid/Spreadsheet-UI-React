@@ -1,8 +1,8 @@
 import type { IconType } from 'react-icons'
 import { LiaAngleDownSolid } from 'react-icons/lia'
 
-const TableHeaderCell = ({ isDropDown = false, Icon, title  }: { isDropDown?: boolean, Icon: IconType, title?: string }) => {
-    const handleDropDownClick = () =>{
+const TableHeaderCell = ({ isDropDown = false, Icon, title }: { isDropDown?: boolean, Icon: IconType, title?: string }) => {
+    const handleDropDownClick = () => {
         console.log(`dropdown clicked`)
     }
 
@@ -14,12 +14,11 @@ const TableHeaderCell = ({ isDropDown = false, Icon, title  }: { isDropDown?: bo
                     <span className="title font-semibold text-gray-medium text-xs">{title}</span>
                 }
             </div>
-            <button className="p-1" onClick={handleDropDownClick}>
-                {isDropDown &&
+            {isDropDown &&
+                <button className="p-1 cursor-pointer" onClick={handleDropDownClick}>
                     <LiaAngleDownSolid className='h-3 w-3 text-gray-light' />
-                }
-
-            </button>
+                </button>
+            }
         </div>
     )
 }

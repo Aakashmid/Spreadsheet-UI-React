@@ -28,10 +28,14 @@ const statusStyles: Record<string, string> = {
 
 const StatusCell = ({ value }: { value: string }) => {
   const style = statusStyles[value] || "bg-gray-100 text-gray-700";
+
   return (
-    <div className={` px-2 py-1 rounded-2xl text-xs font-medium  ${style}   w-fit mx-auto`}>
-      {value}
-    </div>
+    <>
+      {value && <div className={` px-2 py-1 rounded-2xl text-xs font-medium  ${style}   w-fit mx-auto`}>
+        {value}
+      </div>
+      }
+    </>
   );
 };
 
@@ -45,7 +49,7 @@ const DateCell = ({ value }: { value: Date }) => (
     {/* {value} */}
     {value instanceof Date && !isNaN(value.getTime())
       ? value.toLocaleDateString()
-      : "Invalid "}
+      : ""}
   </div>
 );
 
@@ -71,7 +75,7 @@ const PriorityCell = ({ value }: { value: string }) => (
 const CurrencyCell = ({ value }: { value: number }) => (
   <div className="flex items-center justify-end gap-2">
     {value?.toLocaleString("en-IN")}
-    <FaIndianRupeeSign className="inline-block text-gray-light h-3 w-2" />
+    {value && <FaIndianRupeeSign className="inline-block text-gray-light h-3 w-2" />}
   </div>
 );
 

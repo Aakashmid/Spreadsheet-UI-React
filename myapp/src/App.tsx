@@ -1,4 +1,4 @@
-import Row from "./components/row"
+import Row from "./components/top-row"
 import Table from "./components/table"
 import TitleRow from "./components/TitleRow"
 import Topbar from "./components/topbar"
@@ -10,10 +10,10 @@ function App() {
     <>
       <Topbar />
       <div className="spreadsheet-wrapper w-full relative">
-        <Row />
+        <Row/>  {/* actions row component for table  */}
         <Table />
         <div className="fixed z-10 bottom-0 ">
-          <TitleRow/>
+          <TitleRow/>  
         </div>
       </div>
 

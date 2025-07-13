@@ -3,11 +3,13 @@ import { LiaAngleRightSolid } from "react-icons/lia";
 import { PiBell } from "react-icons/pi";
 import { RiSideBarFill } from "react-icons/ri";
 import SearchBar from "./SearchBar";
+import { TbLayoutSidebarFilled } from "react-icons/tb";
 
 const Topbar = () => {
     const handleSubmit = (query: string) => {
         console.log("Search query submitted:", query);
     }
+
 
     const path: string[] = ["Workspace", "Folder 2", 'Spreadsheet3'];
 
@@ -15,8 +17,8 @@ const Topbar = () => {
         <div className="h-14  flex justify-between items-center px-4 py-2 border-b border-gray-xlight">
             <div className="path flex items-center gap-4">
 
-                <button className="">
-                    <RiSideBarFill className="text-green-muted rotate-180  h-6 w-auto" />
+                <button className="cursor-pointer " onClick={()=>console.log('sidebar toggled')}>
+                    <TbLayoutSidebarFilled  className="text-green-muted transition-colors rotate-180 hover:text-green-dark h-6 w-auto" />
                 </button>
 
                 <div className="flex items-center gap-4">{path.map((name: string, index: number) => (
@@ -25,8 +27,8 @@ const Topbar = () => {
 
                 ))}
                 </div>
-                <button className="p-1">
-                    <BsThreeDots className="w-5 h-5 text-gray-light" />
+                <button onClick={()=>console.log('more icon clicked')} className="p-1 cursor-pointer text-gray-light transition-colors hover:text-dark">
+                    <BsThreeDots className="w-5 h-5 " />
                 </button>
 
             </div>

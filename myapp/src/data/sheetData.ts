@@ -1,18 +1,20 @@
 export type SheetDataType = {
-    jobRequest: string,  // Overview group
-    submitted: Date,
+    id:number,
+    jobRequest: string, 
+    submitted: Date | null,
     submitter: string,
     status: string,
     url: string,
-    assigned: string,  // ABC group 
-    priority: string,  //  Answer a question - group for priority and due_date
-    due_date: Date,
-    est_value: number     // extract group
+    assigned: string, 
+    priority: string,  
+    due_date: Date | null,
+    est_value: number | null, 
 }
 
 
 export const sheet_data: SheetDataType[] = [
     {
+        id: 1,
         jobRequest: 'Launch social media campaign for product XYZ',
         submitted: new Date('2024-11-15'),
         status: 'In-Process',
@@ -24,6 +26,7 @@ export const sheet_data: SheetDataType[] = [
         est_value: 6200000
     },
     {
+        id: 2,
         jobRequest: 'Update press kit for company redesign',
         submitted: new Date('2024-10-28'),
         status: 'Need to start',
@@ -35,6 +38,7 @@ export const sheet_data: SheetDataType[] = [
         est_value: 3500000
     },
     {
+        id: 3,
         jobRequest: 'Update press kit for company redesign',
         submitted: new Date('2024-10-28'),
         status: 'Complete',
@@ -46,6 +50,7 @@ export const sheet_data: SheetDataType[] = [
         est_value: 6200000
     },
     {
+        id: 4,
         jobRequest: 'Update press kit for company redesign',
         submitted: new Date('2024-10-28'),
         status: 'In-Process',
@@ -57,6 +62,7 @@ export const sheet_data: SheetDataType[] = [
         est_value: 6200000
     },
     {
+        id: 5,
         jobRequest: 'Update press kit for company redesign',
         submitted: new Date('2024-10-28'),
         status: 'Blocked',
