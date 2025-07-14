@@ -36,8 +36,6 @@ const TableCell: React.FC<TableCellProps> = (props) => {
   const cellRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-
-
   const handleSave = () => {
     console.log('Saving data:', { rowIndex, columnId, value });
 
@@ -45,7 +43,6 @@ const TableCell: React.FC<TableCellProps> = (props) => {
       props.onCellUpdate(rowIndex, columnId, value);
     }
   };
-
 
   // Enter edit mode
   const enterEditMode = () => {
@@ -63,9 +60,6 @@ const TableCell: React.FC<TableCellProps> = (props) => {
     setIsEditing(false);
   };
 
-
-
-
   const handleCellFocus = () => {
     setIsfocused(true);
   }
@@ -80,12 +74,9 @@ const TableCell: React.FC<TableCellProps> = (props) => {
     }
   }
 
-
-
-
   // Navigate to adjacent cells
   const navigateToCell = (direction: 'up' | 'down' | 'left' | 'right') => {
-    const currentCell = cellRef.current;
+    const currentCell = cellRef.current?.closest('td');
     if (!currentCell) return;
 
     const table = currentCell.closest('table');
@@ -94,35 +85,34 @@ const TableCell: React.FC<TableCellProps> = (props) => {
     const currentRow = currentCell.closest('tr');
     if (!currentRow) return;
 
-    const currentCellIndex = Array.from(currentRow.children).indexOf(currentCell.closest('td')!);
+    const allRows = Array.from(table.querySelectorAll('tr'));
+    const currentRowIndex = allRows.indexOf(currentRow);
+    const currentCellIndex = Array.from(currentRow.children).indexOf(currentCell);
+
     let targetCell: HTMLElement | null = null;
 
     switch (direction) {
       case 'up':
-        const prevRow = currentRow.previousElementSibling as HTMLTableRowElement;
-        if (prevRow) {
-          targetCell = prevRow.children[currentCellIndex]?.querySelector('div[tabIndex="0"]') as HTMLElement;
+        if (currentRowIndex > 0) {
+          targetCell = allRows[currentRowIndex - 1].children[currentCellIndex]?.querySelector('div[tabIndex="0"]') as HTMLElement;
         }
         break;
 
       case 'down':
-        const nextRow = currentRow.nextElementSibling as HTMLTableRowElement;
-        if (nextRow) {
-          targetCell = nextRow.children[currentCellIndex]?.querySelector('div[tabIndex="0"]') as HTMLElement;
+        if (currentRowIndex < allRows.length - 1) {
+          targetCell = allRows[currentRowIndex + 1].children[currentCellIndex]?.querySelector('div[tabIndex="0"]') as HTMLElement;
         }
         break;
 
       case 'left':
-        const prevCell = currentRow.children[currentCellIndex - 1];
-        if (prevCell) {
-          targetCell = prevCell.querySelector('div[tabIndex="0"]') as HTMLElement;
+        if (currentCellIndex > 0) {
+          targetCell = currentRow.children[currentCellIndex - 1]?.querySelector('div[tabIndex="0"]') as HTMLElement;
         }
         break;
 
       case 'right':
-        const nextCell = currentRow.children[currentCellIndex + 1];
-        if (nextCell) {
-          targetCell = nextCell.querySelector('div[tabIndex="0"]') as HTMLElement;
+        if (currentCellIndex < currentRow.children.length - 1) {
+          targetCell = currentRow.children[currentCellIndex + 1]?.querySelector('div[tabIndex="0"]') as HTMLElement;
         }
         break;
     }
@@ -145,7 +135,6 @@ const TableCell: React.FC<TableCellProps> = (props) => {
       case 'Backspace':
         e.preventDefault();
         setValue('');
-        handleSave();
         break;
 
       case 'ArrowUp':
@@ -160,7 +149,9 @@ const TableCell: React.FC<TableCellProps> = (props) => {
 
       case 'ArrowLeft':
         e.preventDefault();
-        navigateToCell('left');
+        setTimeout(() => {
+          navigateToCell('left');
+        }, 100);
         break;
 
       case 'ArrowRight':
@@ -185,23 +176,37 @@ const TableCell: React.FC<TableCellProps> = (props) => {
   };
 
 
-  // onDoubleClick={}
   const handleInputKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
       case 'Enter':
         e.preventDefault();
-        handleSave();
-        // navigateToCell('down');
+        const currentCellElement = cellRef.current;
+        
+        // handle save has to handle 
+
+        setIsEditing(false);
+        const cellToFocus = currentCellElement || cellRef.current;
+        if (cellToFocus) {
+          cellToFocus.focus();
+        }
+
         break;
 
       case 'Escape':
-        exitEditMode();
+        e.preventDefault();
+        exitEditMode(false); // Exit without saving
+        setTimeout(() => {
+          if (cellRef.current) {
+            cellRef.current.focus();
+          }
+        }, 0);
+
         break;
+
       default:
         break;
     }
   }
-
   // Update value when initialValue changes (for data cells)
   useEffect(() => {
     setValue(initialValue);
