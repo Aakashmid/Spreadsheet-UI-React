@@ -9,7 +9,7 @@ import TableCell from './common-components/TableCell';
 
 const Table = () => {
     const [data, setData] = useState<SheetDataType[]>(sheet_data);
-  
+
     // This is the handleCellUpdate function that gets passed to TableCell
     const handleCellUpdate = (rowIndex: number, columnId: string, value: any) => {
         // console.log(`Updating cell at row ${rowIndex}, column ${columnId} with value:`, value);
@@ -56,7 +56,7 @@ const Table = () => {
     };
 
 
-  
+
     const table = useReactTable({
         data: data,
         columnResizeMode: 'onChange',
@@ -129,19 +129,19 @@ const Table = () => {
                                     key={column.id}
                                     className={`border border-gray-xlight  h-8 truncate ${colIdx === 0 && 'sticky left-0 z-10'}`}
                                 >
-
-
                                     {colIdx === 0 ? (
                                         <div className="w-full text-center px-2 text-sm text-gray-medium">
                                             {table.getRowModel().rows.length + idx + 1}
                                         </div>
                                     ) : (
-                                        <TableCell
-                                            isEmptyRow={true}
-                                            rowIndex={data.length + idx}
-                                            columnId={column.id}
-                                            onCellUpdate={handleCellUpdate}
-                                        />
+                                        colIdx !== table.getAllLeafColumns().length - 1 && (
+                                            <TableCell
+                                                isEmptyRow={true}
+                                                rowIndex={data.length + idx}
+                                                columnId={column.id}
+                                                onCellUpdate={handleCellUpdate}
+                                            />
+                                        )
                                     )}
                                 </td>
                             ))}

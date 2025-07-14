@@ -1,7 +1,7 @@
 import { BsThreeDots } from "react-icons/bs";
 import { LiaAngleRightSolid } from "react-icons/lia";
 import { PiBell } from "react-icons/pi";
-import { RiSideBarFill } from "react-icons/ri";
+
 import SearchBar from "./SearchBar";
 import { TbLayoutSidebarFilled } from "react-icons/tb";
 

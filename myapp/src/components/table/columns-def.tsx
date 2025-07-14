@@ -10,7 +10,6 @@ import TableHeaderLinkCell from "./common-components/TableHeaderLinkCell"
 import type { SheetDataType } from "../../data/sheetData"
 import { BiPlus } from "react-icons/bi"
 import TableCell from "./common-components/TableCell"
-import type { StatusCell } from "./common-components/CellVariants"
 
 const columnHelper = createColumnHelper<SheetDataType>()
 
@@ -142,17 +141,12 @@ const columns = (handleCellUpdate: (rowIndex: number, columnId: string, value: a
             <button className="cursor-pointer"><BiPlus className="text-navy-dark h-5 w-5" /></button>
         </div>,
         columns: [
-
-            columnHelper.accessor('empty', {
-                id: 'empty',
+            columnHelper.display({
+                id: 'newColumn',
                 header: () => <div></div>,
-
-                cell: info => <TableCell
-                    info={info}
-                    onCellUpdate={handleCellUpdate}
-                />,
-                footer: props => props.column.id,
-            }),
+                cell: () => null,
+                footer: props => props.column.id
+            })
         ]
     })
 ]

@@ -1,6 +1,4 @@
-import { FaIndianRupeeSign, FaRupeeSign } from "react-icons/fa6";
-
-
+import { FaIndianRupeeSign } from "react-icons/fa6";
 
 
 
@@ -45,7 +43,7 @@ const StatusCell = ({ value }: { value: string }) => {
 
 // date cell ---------------------------------
 const DateCell = ({ value }: { value: Date }) => (
-  <div>
+  <div className="text-right w-full">
     {/* {value} */}
     {value instanceof Date && !isNaN(value.getTime())
       ? value.toLocaleDateString()
@@ -73,7 +71,7 @@ const PriorityCell = ({ value }: { value: string }) => (
 
 // currency cell  ------------------------------------------------------
 const CurrencyCell = ({ value }: { value: number }) => (
-  <div className="flex items-center justify-end gap-2">
+  <div className="flex items-center justify-end gap-2 w-full">
     {value?.toLocaleString("en-IN")}
     {value && <FaIndianRupeeSign className="inline-block text-gray-light h-3 w-2" />}
   </div>
