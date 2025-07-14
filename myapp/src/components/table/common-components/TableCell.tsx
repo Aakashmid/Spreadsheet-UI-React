@@ -36,6 +36,9 @@ const TableCell: React.FC<TableCellProps> = (props) => {
   const cellRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+    // Check if current column is a date column
+  const isDateColumn = columnId === "due_date" || columnId === "submitted";
+
   const handleSave = () => {
     console.log('Saving data:', { rowIndex, columnId, value });
 
@@ -180,6 +183,7 @@ const TableCell: React.FC<TableCellProps> = (props) => {
     switch (e.key) {
       case 'Enter':
         e.preventDefault();
+        // if(isDateCo
         const currentCellElement = cellRef.current;
         
         // handle save has to handle 
@@ -219,6 +223,7 @@ const TableCell: React.FC<TableCellProps> = (props) => {
       tabIndex={0}
       onFocus={handleCellFocus}
       onClick={handleCellFocus}
+      onDoubleClick={enterEditMode}
       onBlur={handleCellBlur}
       onKeyDown={handleDivKeyDown}
       className={`h-full px-2 flex items-center outline-none text-xs w-full cursor-cell ${(isfocused || isEditing) && 'border border-green-soft'} `}
@@ -227,12 +232,12 @@ const TableCell: React.FC<TableCellProps> = (props) => {
         <input
           ref={inputRef}
           onKeyDown={handleInputKeyDown}
-          type="text"
+          type={"text"}
           value={value ?? ""}
-          onChange={e => setValue(e.target.value)}
+          onChange={e =>setValue(e.target.value)}
           className="w-full outline-none bg-transparent"
           autoFocus
-          placeholder={props.isEmptyRow ? "Enter value..." : ""}
+          placeholder={isDateColumn ? "dd-mm-yyyy" : props.isEmptyRow ? "Enter value..." : ""}
         />
         :
         <>

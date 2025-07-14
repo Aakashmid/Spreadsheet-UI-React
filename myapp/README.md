@@ -1,69 +1,116 @@
-# React + TypeScript + Vite
+# Spreadsheet-UI-React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive spreadsheet component built with React, TypeScript, and TanStack Table. This project provides Excel-like functionality with keyboard navigation, inline editing, and various cell types.
 
-Currently, two official plugins are available:
+##  Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interactive Spreadsheet**: Excel-like interface with keyboard navigation
+- **Inline Editing**: Click or press Enter to edit cells
+- **Keyboard Navigation**: Arrow keys, Tab, Enter for seamless navigation
+- **Multiple Cell Types**: Support for text, currency, date, status, priority, and URL cells
+- **Real-time Updates**: Live data editing with callback support
+- **Empty Row Support**: Add new rows dynamically
+- **Responsive Design**: Built with Tailwind CSS for modern UI
 
-## Expanding the ESLint configuration
+##  Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js (v16 or higher)
+- npm or yarn package manager
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+##  Setup & Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Aakashmid/Spreadsheet-UI-React.git
+   cd Spreadsheet-UI-React
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. **Navigate to the app directory**
+   ```bash
+   cd myapp
+   ```
+
+3. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to `http://localhost:3000` to see the application.
+
+##  Project Structure
+
+```
+myapp/
+├── src/
+│   ├── components/
+│   │   └── table/
+│   │       ├── common-components/
+│   │       │   ├── TableCell.tsx          # Main cell component
+│   │       │   ├── CellVariants.tsx       # Specialized cell types
+│   │       │   └── ...
+│   │       └── ...
+│   ├── data/
+│   │   └── sheetData.ts                   # Sample data structure
+│   ├── App.tsx                            # Main application
+│   └── ...
+├── package.json
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+##  Key Components
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### TableCell Component
+The core component that handles:
+- Cell editing and display modes
+- Keyboard navigation (Arrow keys, Tab, Enter, Escape)
+- Focus management
+- Data validation and updates
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Cell Variants
+Specialized components for different data types:
+- `CurrencyCell`: Formatted currency display
+- `DateCell`: Date  validation
+- `StatusCell`: Status badges with colors
+- `PriorityCell`: Priority indicators
+- `UrlCell`: Clickable URL links
+
+##  Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `Enter` | Enter edit mode / Save and move down |
+| `Escape` | Cancel editing |
+| `Tab` | Move to next cell (Shift+Tab for previous) |
+| `Arrow Keys` | Navigate between cells |
+| `Backspace` | Clear cell content |
+| `Any character` | Start editing with typed character |
+
+## Trade-offs & Considerations
+
+### Performance
+- **Trade-off**: Each cell is a separate React component
+- **Impact**: May affect performance with very large datasets (1000+ cells)
+- **Consideration**: Suitable for small to medium-sized datasets
+
+### DOM Navigation
+- **Trade-off**: Direct DOM queries for cell navigation instead of pure React refs
+- **Reason**: TanStack Table's complex DOM structure requires flexible cell detection
+- **Benefit**: More reliable navigation across different table structures
+
+### State Management
+- **Trade-off**: Local state in each cell vs centralized state management
+- **Benefit**: Better performance and simpler implementation for current use case
+- **Consideration**: Requires prop drilling for data updates
+
+
+
+
+
+
+

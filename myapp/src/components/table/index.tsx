@@ -31,13 +31,13 @@ const Table = () => {
                     newData.push({
                         id: newData.length + 1, // Generate new ID
                         jobRequest: '',
-                        submitted: null,
+                        submitted: '',
                         status: '',
                         submitter: '',
                         url: '',
                         assigned: '',
                         priority: '',
-                        due_date: null,
+                        due_date: '',
                         est_value: null
                     } as SheetDataType);
                 }

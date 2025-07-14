@@ -42,15 +42,21 @@ const StatusCell = ({ value }: { value: string }) => {
 
 
 // date cell ---------------------------------
-const DateCell = ({ value }: { value: Date }) => (
-  <div className="text-right w-full">
-    {/* {value} */}
-    {value instanceof Date && !isNaN(value.getTime())
-      ? value.toLocaleDateString()
-      : ""}
-  </div>
-);
-
+const DateCell = ({ value }: { value: string }) => {
+  const isValidFormat = /^\d{2}-\d{2}-\d{4}$/.test(value);
+  const [day, month, year] = isValidFormat ? value.split('-').map(Number) : [];
+  const date = isValidFormat ? new Date(year, month - 1, day) : new Date('invalid');
+  const isValidDate = !isNaN(date.getTime());
+  
+  return (
+    <div 
+      className={`text-right w-full ${!isValidDate ? 'text-red-500' : ''}`}
+      title={!isValidDate ? 'Invalid date format' : ''}
+    >
+       {value }
+    </div>
+  );
+};
 
 
 
